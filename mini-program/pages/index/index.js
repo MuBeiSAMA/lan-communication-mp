@@ -47,14 +47,14 @@ Page({
     if (service){
       const { ip, port, serviceName } = service
       wx.request({
-        url: `$http://{ip}:${port}`,
+        url: `http://${ip}:${port}/`,
         success: (res) => {
           console.log(res)
         },
       })
 
       wx.connectSocket({
-        url: `$http://{ip}:${port}`,
+        url: `ws://${ip}:${port}/`,
         success: (res) => {
           console.log(res)
         }

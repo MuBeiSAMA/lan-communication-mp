@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
   res.send('hello world');
 });
 
+io.on('/test',(req, res) => {
+  console.log(req);
+  res.send('test');
+})
+
 io.on('connection', function(socket){
   console.log('a user connected');
 });
