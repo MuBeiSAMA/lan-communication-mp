@@ -1,3 +1,5 @@
+const io = require('../../utils/weapp.socket.io.js')
+
 Page({
   data: {
     motto: 'Hello World',
@@ -53,11 +55,10 @@ Page({
         },
       })
 
-      wx.connectSocket({
-        url: `ws://${ip}:${port}/`,
-        success: (res) => {
-          console.log(res)
-        }
+      const socket = io(`ws://${ip}:${port}/`)
+
+      socket.emit('test',res=>{
+        console.log(res)
       })
     }
   }

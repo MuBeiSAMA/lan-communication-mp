@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('hello world');
 });
 
-io.on('/test',(req, res) => {
+io.on('test',(req, res) => {
   console.log(req);
   res.send('test');
 })
