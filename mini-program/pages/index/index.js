@@ -10,7 +10,6 @@ Page({
      * 监听 mDNS 服务发现的事件
      */
     wx.onLocalServiceFound(res=>{
-      console.log(res)
       const serviceList = this.data.serviceList
       serviceList.push(res)
       this.setData({
@@ -26,7 +25,6 @@ Page({
       serviceType: '_http._tcp.',
       success: res=>{
         this.setData({ serviceList: [] })
-        console.log(res)
       },
       fail: res => {
         console.log(res)
@@ -36,13 +34,11 @@ Page({
   onHide(){
     wx.stopLocalServiceDiscovery({
       success: res=>{
-        console.log(res)
         this.setData({ serviceList: []})
       }
     })
   },
   connect(e){
-    console.log(e)
     const idx = e.currentTarget.dataset.idx
     const service = this.data.serviceList[idx]
     console.log(service)
@@ -56,7 +52,7 @@ Page({
       })
 
       const socket = io(`ws://${ip}:${port}/`)
-
+      console.log(socket)
       socket.emit('test',res=>{
         console.log(res)
       })
