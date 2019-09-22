@@ -44,5 +44,21 @@ Page({
     const idx = e.currentTarget.dataset.idx
     const service = this.data.serviceList[idx]
     console.log(service)
+    if (service){
+      const { ip, port, serviceName } = service
+      wx.request({
+        url: `$http://{ip}:${port}`,
+        success: (res) => {
+          console.log(res)
+        },
+      })
+
+      wx.connectSocket({
+        url: `$http://{ip}:${port}`,
+        success: (res) => {
+          console.log(res)
+        }
+      })
+    }
   }
 })
