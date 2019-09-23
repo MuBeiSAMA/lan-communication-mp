@@ -2,7 +2,6 @@ const io = require('../../utils/weapp.socket.io.js')
 
 Page({
   data: {
-    motto: 'Hello World',
     serviceList: []
   },
   onLoad() {
@@ -32,28 +31,46 @@ Page({
     })
   },
   onHide(){
+    /**
+     * 停止搜索
+     */
     wx.stopLocalServiceDiscovery({
       success: res=>{
         this.setData({ serviceList: []})
       }
     })
   },
+  /**
+   * 连接
+   */
   connect(e){
     const idx = e.currentTarget.dataset.idx
     const service = this.data.serviceList[idx]
     console.log(service)
     if (service){
       const { ip, port, serviceName } = service
+
+      /**
+       * http 通信
+       */
       wx.request({
         url: `http://${ip}:${port}/`,
-        success: (res) => {
+        data:{name: 'yourName'},
+        success: res => {
           console.log(res)
         },
       })
 
+      /**
+       * socket 通信 建立连接
+       */
       const socket = io(`ws://${ip}:${port}/`)
-      console.log(socket)
-      socket.emit('test',res=>{
+
+      // 发送
+      socket.emit('test', {msg: 'hello world'})
+
+      // 接收
+      socket.on('test',res => {
         console.log(res)
       })
     }

@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="title">
+    <text>Services List</text>
   </view>
   <view class="service-list fc">
     <view wx:for="{{serviceList}}" wx:key="{{index}}" class="service-item">

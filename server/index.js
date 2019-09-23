@@ -22,16 +22,18 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
-  res.send('hello world');
+  console.log(req.query);
+  const {name} = req.query;
+  res.send(`hello ${name}`);
 });
 
-io.on('/test',(req, res) => {
-  console.log(req);
-  res.send('test');
-})
-
-io.on('connection', function(socket){
+io.on('connection', socket => {
   console.log('a user connected');
+
+  socket.on('test', res => {
+    console.log(res);
+    socket.emit('test', res);
+  });
 });
 
 http.listen(1111, () => {
