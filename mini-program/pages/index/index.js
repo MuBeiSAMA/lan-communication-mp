@@ -48,7 +48,7 @@ Page({
     const service = this.data.serviceList[idx]
     console.log(service)
     if (service){
-      const { ip, port, serviceName } = service
+      const { ip, port } = service
 
       /**
        * http 通信
