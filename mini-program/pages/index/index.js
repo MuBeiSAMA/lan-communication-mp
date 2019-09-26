@@ -22,7 +22,7 @@ Page({
      */
     wx.startLocalServiceDiscovery({
       serviceType: '_http._tcp.',
-      success: res=>{
+      success: res => {
         this.setData({ serviceList: [] })
       },
       fail: res => {
