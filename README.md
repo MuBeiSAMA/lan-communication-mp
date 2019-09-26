@@ -87,7 +87,7 @@ wx.startLocalServiceDiscovery({
 
 /**
  * 监听 mDNS 服务发现的事件
- * @param {function} callback 发现了服务的回调，参数会单个服务数据
+ * @param {function} callback 发现了服务的回调，参数为单个服务数据
  */
 wx.onLocalServiceFound(function callback)
 ```
